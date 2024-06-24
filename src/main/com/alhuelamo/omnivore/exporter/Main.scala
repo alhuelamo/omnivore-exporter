@@ -1,8 +1,11 @@
 package com.alhuelamo.omnivore.exporter
 
-val greet = "Hello, world"
+import com.alhuelamo.omnivore.exporter.config.AppConf
 
-@main
-def hello() = {
-  println(greet)
+object Main {
+
+  def main(args: Array[String]): Unit = {
+    val conf = AppConf(args)
+  }
+
 }
