@@ -4,10 +4,15 @@ import munit.*
 
 class AppConfSpec extends FunSuite {
 
-  private val validArgs = Array("--api-token", "token", "--input-label", "label")
+  private val requiredArgs = Array("--api-token", "token", "--username", "user")
+  private val validArgs = requiredArgs ++ Array("--input-label", "label")
 
   testConf("should process valid api token", validArgs) { conf =>
     assertEquals(conf.apiToken, "token")
+  }
+
+  testConf("should process valid username", validArgs) { conf =>
+    assertEquals(conf.username, "user")
   }
 
   testConf("should process valid input label", validArgs) { conf =>
@@ -20,13 +25,7 @@ class AppConfSpec extends FunSuite {
     }
   }
 
-  private val onlyRequiredArgs = Array("--api-token", "token")
-
-  testConf("should process required API token", onlyRequiredArgs) { conf =>
-    assertEquals(conf.apiToken, "token")
-  }
-
-  testConf("should set inputLabel to None on empty args", onlyRequiredArgs) { conf =>
+  testConf("should set inputLabel to None on empty args", requiredArgs) { conf =>
     assertEquals(conf.inputLabel, None)
   }
 

@@ -6,6 +6,7 @@ import com.monovore.decline.Command
 
 case class AppConf(
     apiToken: String,
+    username: String,
     inputLabel: Option[String],
 )
 
@@ -13,6 +14,7 @@ object AppConf {
 
   private val configFromCli = (
     cli.apiToken,
+    cli.username,
     cli.inputLabel,
   ).mapN(AppConf.apply)
 
