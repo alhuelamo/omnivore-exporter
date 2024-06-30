@@ -5,7 +5,6 @@ import scala.util.Try
 import sttp.client3.{HttpClientSyncBackend, Identity, SttpBackend}
 import sttp.client3.quick.*
 import sttp.model.Uri
-import upickle.core.LinkedHashMap
 
 class ApiClient(apiToken: String, httpBackend: SttpBackend[Identity, Any]) {
   import ApiClient._
