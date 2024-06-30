@@ -1,6 +1,6 @@
-# scala-cli-test-project
+# omnivore-exporter
 
-Example of how to set up a Scala project using Scala CLI.
+Utility to export articles from [Omnivore](https://omnivore.app/).
 
 ## Prerequisites
 
@@ -10,12 +10,6 @@ Example of how to set up a Scala project using Scala CLI.
 
 ```shell
 scala-cli setup-ide .
-```
-
-## Running main method
-
-```shell
-scala-cli .
 ```
 
 ## Running tests
