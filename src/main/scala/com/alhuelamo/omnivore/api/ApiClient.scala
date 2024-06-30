@@ -1,5 +1,7 @@
 package com.alhuelamo.omnivore.api
 
+import scala.util.Try
+
 import sttp.client3.{HttpClientSyncBackend, Identity, SttpBackend}
 import sttp.client3.quick.*
 import sttp.model.Uri
@@ -44,7 +46,7 @@ object ApiClient {
   private def parseArticleResponse(jsonResponse: ujson.Value) = {
     val jsonArticleResponse = jsonResponse("data")("article")
 
-    def parseSuccess(json: LinkedHashMap[String, ujson.Value]): ArticleResponse.ArticleSuccess = {
+    def parseSuccess(json: ujson.Value): ArticleResponse.ArticleSuccess = {
       ArticleResponse.ArticleSuccess(
         json("id").str,
         json("title").str,
@@ -60,7 +62,7 @@ object ApiClient {
       }
     }
 
-    jsonArticleResponse("article").objOpt
+    Try(jsonArticleResponse("article")).toOption
       .map(parseSuccess)
       .orElse(parseErrors)
       .get

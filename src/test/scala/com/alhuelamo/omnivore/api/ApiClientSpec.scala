@@ -15,7 +15,7 @@ class ApiClientSpec extends munit.FunSuite {
 
   test("gets errosrs given a non-existing article") {
     val article = testApiClient.getArticleContent("username", "slugNonExisting")
-    assertEquals(article, ArticleResponse.ArticleError(Seq("NOT_FOUND")))
+    assertEquals(article, ArticleResponse.ArticleError(Seq("\"NOT_FOUND\"")))
   }
 
 }
@@ -74,7 +74,7 @@ object ArticleResponses {
     .Obj(
       "data" -> ujson.Obj(
         "article" -> ujson.Obj(
-          "errorCodes" -> Seq("NOT_FOUND"),
+          "errorCodes" -> ujson.Arr("NOT_FOUND"),
         ),
       ),
     )
