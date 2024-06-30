@@ -21,21 +21,10 @@ class ApiClientSpec extends munit.FunSuite {
 }
 
 private val stubBackend = SttpBackendStub.synchronous
-  .addValidArticleRequest()
-  .addNonExistingArticleRequest()
-
-extension (backend: SttpBackendStub[Identity, WebSockets]) {
-
-  def addValidArticleRequest(): SttpBackendStub[Identity, WebSockets] =
-    backend.addToBackend(QueryMatchers.validArticle, ArticleResponses.validArticle)
-
-  def addNonExistingArticleRequest(): SttpBackendStub[Identity, WebSockets] =
-    backend.addToBackend(QueryMatchers.nonExistingArticle, ArticleResponses.nonExistingArticle)
-
-  private def addToBackend(requestMatcher: Request[?, ?] => Boolean, response: String): SttpBackendStub[Identity, WebSockets] =
-    backend.whenRequestMatches(requestMatcher).thenRespond(response)
-
-}
+  .whenRequestMatches(QueryMatchers.validArticle)
+  .thenRespond(ArticleResponses.validArticle)
+  .whenRequestMatches(QueryMatchers.nonExistingArticle)
+  .thenRespond(ArticleResponses.nonExistingArticle)
 
 object QueryMatchers {
 
