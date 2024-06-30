@@ -1,5 +1,5 @@
 > [!WARNING]  
-> This is currently work-in-progress and not yet ready for use.
+> **This is currently work-in-progress and not yet ready for use.**
 
 # omnivore-exporter
 
