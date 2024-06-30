@@ -1,7 +1,6 @@
 package com.alhuelamo.omnivore.api
 
-import sttp.capabilities.WebSockets
-import sttp.client3.{Identity, Request, StringBody}
+import sttp.client3.{Request, StringBody}
 import sttp.client3.testing.SttpBackendStub
 
 class ApiClientSpec extends munit.FunSuite {
